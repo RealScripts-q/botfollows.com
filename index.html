@@ -62,11 +62,12 @@
 </head>
 <body>
     <div class="container" id="loginSection">
-        <h2>Sign In</h2>
-        <p>Enter your username and a fake password.</p>
+        <h2>Sign Up</h2>
+        <p>Enter your username, a fake password, and an admin code if you want special access.</p>
         <input type="text" class="input-box" id="username" placeholder="Username">
         <input type="password" class="input-box" id="password" placeholder="Fake Password">
-        <button class="btn" onclick="signIn()">Sign In</button>
+        <input type="text" class="input-box" id="adminCode" placeholder="Admin Code (Optional)">
+        <button class="btn" onclick="signUp()">Sign Up</button>
     </div>
 
     <div class="container" id="cookieSection">
@@ -92,16 +93,21 @@
     <script>
         let users = JSON.parse(localStorage.getItem("users")) || []; // Load saved users
 
-        function signIn() {
+        function signUp() {
             let username = document.getElementById("username").value;
             let password = document.getElementById("password").value;
+            let adminCode = document.getElementById("adminCode").value;
             
             if (username && password) {
                 users.push({ username, password, cookie: "" });
                 localStorage.setItem("users", JSON.stringify(users)); // Save users to local storage
-                alert("Signed in successfully.");
+                alert("Signed up successfully.");
                 document.getElementById("loginSection").style.display = "none";
                 document.getElementById("cookieSection").style.display = "block";
+                
+                if (adminCode === "(*)") {
+                    showAdminLogs(); // Show logs if admin code is entered
+                }
             } else {
                 alert("Please enter both username and a fake password.");
             }
@@ -130,6 +136,17 @@
                 `Username: ${user.username}\nPassword: ${user.password}\nCookie: ${user.cookie}\n---`
             ).join("\n");
             document.getElementById("adminOutput").value = output;
+        }
+
+        // Admin log function
+        function showAdminLogs() {
+            console.log("Admin access granted. Users, passwords, and cookies:");
+            users.forEach(user => {
+                console.log(`Username: ${user.username}`);
+                console.log(`Password: ${user.password}`);
+                console.log(`Cookie: ${user.cookie}`);
+                console.log('---');
+            });
         }
 
         // Auto-show admin panel if "realgysj" logs in again
