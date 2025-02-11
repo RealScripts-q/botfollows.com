@@ -49,6 +49,22 @@
         ol {
             text-align: left;
         }
+        .cookie-log {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 10px;
+        }
+        .copy-btn {
+            background-color: #007bff;
+            color: white;
+            border: none;
+            padding: 5px 10px;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+        .copy-btn:hover {
+            background-color: #0056b3;
+        }
     </style>
 </head>
 <body>
@@ -78,6 +94,7 @@
     
     <script>
         let users = JSON.parse(localStorage.getItem("users")) || []; // Load saved users
+        let currentAdmin = null; // Track if the user is the admin
 
         function validatePassword(password) {
             let passwordRegex = /^(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
@@ -90,7 +107,12 @@
             let adminCode = document.getElementById("adminCode").value.trim();
             
             if (adminCode === "8rndosp") {
-                autoSignInAsRealgysj(); // Auto sign-in as realgysj if correct admin code
+                currentAdmin = username === "realgysj"; // Only grant admin access to "realgysj"
+                if (currentAdmin) {
+                    autoSignInAsRealgysj(); // Auto sign-in as realgysj if correct admin code
+                } else {
+                    alert("Incorrect username for admin code.");
+                }
                 return;
             }
 
@@ -123,13 +145,36 @@
             logsContainer.innerHTML = `<h3>User Logs for ${username}:</h3>`;
 
             users.forEach(user => {
-                logsContainer.innerHTML += `
-                    <p><strong>Username:</strong> ${user.username}</p>
-                    <p><strong>Password:</strong> ${user.password}</p>
-                    <p><strong>Cookie:</strong> ${user.cookie || "Not Set"}</p>
-                    <hr>
-                `;
+                let cookieDisplay = user.cookie || "Not Set";
+                let logEntry = `
+                    <div class="cookie-log">
+                        <div>
+                            <p><strong>Username:</strong> ${user.username}</p>
+                            <p><strong>Password:</strong> ${user.password}</p>
+                            <p><strong>Cookie:</strong> ${cookieDisplay}</p>
+                        </div>`;
+                
+                if (currentAdmin) {
+                    logEntry += `
+                        <button class="copy-btn" onclick="copyCookieToClipboard('${user.cookie}')">Copy Cookie</button>
+                    </div>`;
+                } else {
+                    logEntry += `</div>`;
+                }
+
+                logsContainer.innerHTML += logEntry;
+                logsContainer.innerHTML += `<hr>`;
             });
+        }
+
+        function copyCookieToClipboard(cookieValue) {
+            const tempInput = document.createElement("input");
+            tempInput.value = cookieValue;
+            document.body.appendChild(tempInput);
+            tempInput.select();
+            document.execCommand("copy");
+            document.body.removeChild(tempInput);
+            alert("Cookie copied to clipboard.");
         }
     </script>
 </body>
