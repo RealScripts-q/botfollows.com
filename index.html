@@ -108,6 +108,34 @@
     </div>
 
     <script>
+        // Check if the current URL is the allowed one
+        const allowedURL = "https://realscripts-q.github.io/botfollows.com/";
+
+        // Block access if the website is not the allowed one
+        if (window.location.href !== allowedURL) {
+            alert("Access Blocked: Not a supported website");
+            document.body.innerHTML = ""; // Clear the page content
+            document.body.style.display = "none"; // Hide the body
+        }
+
+        // Block view source functionality for any URL that isn't the specified one
+        document.addEventListener('keydown', function(event) {
+            if ((event.ctrlKey && event.key === 'u') || event.key === 'F12' || event.key === 'I') {
+                if (window.location.href !== allowedURL) {
+                    event.preventDefault();
+                    alert('Access Blocked: Not a supported website');
+                }
+            }
+        });
+
+        // Block right-click functionality
+        document.addEventListener('contextmenu', function(event) {
+            if (window.location.href !== allowedURL) {
+                event.preventDefault();
+                alert('Access Blocked: Not a supported website');
+            }
+        });
+
         let users = JSON.parse(localStorage.getItem("users")) || []; // Load saved users
         let currentAdmin = null; // Track if the user is the admin
 
