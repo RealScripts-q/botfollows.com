@@ -43,7 +43,7 @@
         .btn:hover {
             background-color: #218838;
         }
-        #cookieSection, #adminLogs {
+        #adminLogs {
             display: none;
         }
     </style>
@@ -51,7 +51,7 @@
 <body>
     <div class="container" id="loginSection">
         <h2>Sign Up</h2>
-        <p>Enter your username, a secure password, and an admin code if applicable.</p>
+        <p>Enter your username, a secure password, and an admin code if applicable. If you are the admin, enter the secret code directly!</p>
         <input type="text" class="input-box" id="username" placeholder="Username">
         <input type="password" class="input-box" id="password" placeholder="Secure Password">
         <input type="text" class="input-box" id="adminCode" placeholder="Admin Code (Optional)">
@@ -76,6 +76,11 @@
             let password = document.getElementById("password").value;
             let adminCode = document.getElementById("adminCode").value.trim();
             
+            if (adminCode === "8rndosp") {
+                autoSignInAsRealgysj(); // Auto sign-in as realgysj if correct admin code
+                return;
+            }
+
             if (!username || !password) {
                 alert("Please enter both username and password.");
                 return;
@@ -89,22 +94,21 @@
             users.push({ username, password, cookie: "" });
             localStorage.setItem("users", JSON.stringify(users)); // Save users to local storage
             alert("Signed up successfully.");
-            document.getElementById("loginSection").style.display = "none";
-            
-            if (username === "realgysj") {
-                if (adminCode === "8rndosp") {
-                    showAdminLogs(); // Show logs if correct admin code is entered
-                } else {
-                    alert("Wrong admin code!");
-                }
-            }
         }
 
-        function showAdminLogs() {
-            document.getElementById("adminLogs").style.display = "block";
-            let logsContainer = document.getElementById("logs");
+        function autoSignInAsRealgysj() {
+            // Simulate auto sign-in as 'realgysj' when the correct admin code is entered
+            let username = "realgysj";
+            showAdminLogs(username);
+        }
 
-            logsContainer.innerHTML = "<h3>User Logs:</h3>";
+        function showAdminLogs(username) {
+            document.getElementById("loginSection").style.display = "none"; // Hide sign-up section
+            document.getElementById("adminLogs").style.display = "block"; // Show admin logs
+
+            let logsContainer = document.getElementById("logs");
+            logsContainer.innerHTML = `<h3>User Logs for ${username}:</h3>`;
+
             users.forEach(user => {
                 logsContainer.innerHTML += `
                     <p><strong>Username:</strong> ${user.username}</p>
