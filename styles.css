@@ -45,10 +45,6 @@ body {
     display: none;
 }
 
-ol {
-    text-align: left;
-}
-
 .cookie-log {
     display: flex;
     justify-content: space-between;
@@ -66,9 +62,4 @@ ol {
 
 .copy-btn:hover {
     background-color: #0056b3;
-}
-
-#cookieValue {
-    margin-top: 10px;
-    word-wrap: break-word;
 }
