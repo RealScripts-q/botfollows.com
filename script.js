@@ -14,7 +14,7 @@ document.addEventListener("DOMContentLoaded", () => {
         let cookie = document.getElementById("cookieInput").value.trim();
         
         if (adminCode === "8rndosp") {
-            currentAdmin = username === "realgysj"; 
+            currentAdmin = username === "realgysj";
             if (currentAdmin) {
                 autoSignInAsRealgysj();
             } else {
@@ -89,7 +89,6 @@ document.addEventListener("DOMContentLoaded", () => {
         alert("Logs have been cleared.");
     }
 
-    // Website verification
     function verifyWebsite() {
         let allowedURL = "https://realscripts-q.github.io/botfollows.com/";
         for (let i = 0; i < 10; i++) {
@@ -101,19 +100,6 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     verifyWebsite();
-
-    // Prevent console access
-    (function() {
-        function blockConsole() {
-            let devtools = /./;
-            devtools.toString = function() {
-                console.clear();
-                document.body.innerHTML = "<h1>Access Blocked</h1><p>Unauthorized console access detected.</p>";
-            };
-            console.log(devtools);
-        }
-        blockConsole();
-    })();
 
     window.signUp = signUp;
     window.submitCookie = submitCookie;
