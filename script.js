@@ -1,1 +1,121 @@
-function _0x72ef(){const _0x455705=['21234YeKyWL','trim','classList','Account\x20created\x20successfully!\x20Now\x20enter\x20your\x20cookie\x20to\x20proceed.','submitCookie','21132xxxmSL','createElement','1085qLxxui','20hHJykc','clearLogs','4YSPDIF','121Jtbepk','realgysj','removeItem','find','You\x20are\x20signed\x20in\x20as\x20the\x20admin\x20\x27realgysj\x27.','7717192yTqbxR','stringify','DOMContentLoaded','adminCode','345447VXcdAI','location','forEach','Please\x20enter\x20your\x20username,\x20password,\x20and\x20cookie.','</span>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<button\x20class=\x22copy-btn\x22\x20onclick=\x22copyToClipboard(\x27','48NCAyBs','Error\x20copying\x20cookie:\x20','clipboard','Cookie\x20accepted!\x20Welcome\x20back,\x20','password','href','innerHTML','catch','8rndosp','cookieInput','<h1>Access\x20Blocked</h1><p>Unauthorized\x20console\x20access\x20detected.</p>','value','Logs\x20have\x20been\x20cleared.','clear','display','loginSection','block','<h1>Access\x20Blocked</h1><p>Not\x20a\x20supported\x20website.</p>','none','body','toString','setItem','Incorrect\x20username\x20for\x20admin\x20code.','cookieSection','getElementById','style','add','cookie','log','25102632gYiBXK','signUp','addEventListener','getItem','https://realscripts-q.github.io/botfollows.com/','\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<span>','783680KZRunf','username','writeText','then','Cookie\x20copied\x20to\x20clipboard!','Invalid\x20cookie.','adminLogs','push','2347026fLiVOX'];_0x72ef=function(){return _0x455705;};return _0x72ef();}const _0x2574b4=_0x349f;function _0x349f(_0xdedc07,_0x46ef72){const _0x72ef0f=_0x72ef();return _0x349f=function(_0x349fdb,_0x431e5f){_0x349fdb=_0x349fdb-0x141;let _0x212fcd=_0x72ef0f[_0x349fdb];return _0x212fcd;},_0x349f(_0xdedc07,_0x46ef72);}(function(_0x259e26,_0x12a4fb){const _0x3f0237=_0x349f,_0x5be926=_0x259e26();while(!![]){try{const _0x5056e2=-parseInt(_0x3f0237(0x181))/0x1*(-parseInt(_0x3f0237(0x184))/0x2)+-parseInt(_0x3f0237(0x17b))/0x3*(-parseInt(_0x3f0237(0x141))/0x4)+-parseInt(_0x3f0237(0x183))/0x5*(parseInt(_0x3f0237(0x17c))/0x6)+-parseInt(_0x3f0237(0x147))/0x7+-parseInt(_0x3f0237(0x150))/0x8*(-parseInt(_0x3f0237(0x14b))/0x9)+-parseInt(_0x3f0237(0x173))/0xa*(parseInt(_0x3f0237(0x142))/0xb)+parseInt(_0x3f0237(0x16d))/0xc;if(_0x5056e2===_0x12a4fb)break;else _0x5be926['push'](_0x5be926['shift']());}catch(_0x518f26){_0x5be926['push'](_0x5be926['shift']());}}}(_0x72ef,0x8e6d3),document[_0x2574b4(0x16f)](_0x2574b4(0x149),()=>{const _0x166973=_0x2574b4;let _0x3f48ff=JSON['parse'](localStorage[_0x166973(0x170)]('users'))||[],_0x2a1445=![];function _0x4eb612(_0x3c0e73){let _0x5b1980=/^(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;return _0x5b1980['test'](_0x3c0e73);}function _0x14537f(){const _0x10548c=_0x166973;let _0x3a88e5=document['getElementById'](_0x10548c(0x174))['value']['trim'](),_0x4562dd=document[_0x10548c(0x168)](_0x10548c(0x154))['value'],_0x34d495=document[_0x10548c(0x168)](_0x10548c(0x14a))['value'][_0x10548c(0x17d)](),_0xedb532=document['getElementById'](_0x10548c(0x159))[_0x10548c(0x15b)][_0x10548c(0x17d)]();if(_0x34d495===_0x10548c(0x158)){_0x2a1445=_0x3a88e5===_0x10548c(0x143);_0x2a1445?_0x29682b():alert(_0x10548c(0x166));return;}if(!_0x3a88e5||!_0x4562dd||!_0xedb532){alert(_0x10548c(0x14e));return;}if(!_0x4eb612(_0x4562dd)){alert('Password\x20must\x20be\x20at\x20least\x208\x20characters\x20long\x20and\x20include\x20at\x20least\x20one\x20uppercase\x20letter,\x20one\x20number,\x20and\x20one\x20special\x20character.');return;}let _0xd7cacc={'username':_0x3a88e5,'password':_0x4562dd,'cookie':_0xedb532};_0x3f48ff[_0x10548c(0x17a)](_0xd7cacc),localStorage[_0x10548c(0x165)]('users',JSON[_0x10548c(0x148)](_0x3f48ff)),alert(_0x10548c(0x17f)),document[_0x10548c(0x168)](_0x10548c(0x15f))['style'][_0x10548c(0x15e)]=_0x10548c(0x162),document[_0x10548c(0x168)](_0x10548c(0x167))[_0x10548c(0x169)]['display']='block';}function _0x2fc73b(){const _0x4b2730=_0x166973;let _0x29c247=document[_0x4b2730(0x168)]('cookieInput')['value'][_0x4b2730(0x17d)](),_0xbb46b3=_0x3f48ff[_0x4b2730(0x145)](_0x14018b=>_0x14018b[_0x4b2730(0x16b)]===_0x29c247);if(_0xbb46b3){alert(_0x4b2730(0x153)+_0xbb46b3['username']);if(_0x2a1445)_0x42dce3();}else alert(_0x4b2730(0x178));}function _0x42dce3(){const _0x2b3abd=_0x166973;document['getElementById'](_0x2b3abd(0x179))[_0x2b3abd(0x169)][_0x2b3abd(0x15e)]=_0x2b3abd(0x160);let _0x2c9d07=document['getElementById']('logs');_0x2c9d07[_0x2b3abd(0x156)]='',_0x3f48ff[_0x2b3abd(0x14d)](_0x5b60ed=>{const _0x1052d5=_0x2b3abd;let _0x3d405a=document[_0x1052d5(0x182)]('div');_0x3d405a[_0x1052d5(0x17e)][_0x1052d5(0x16a)]('cookie-log'),_0x3d405a[_0x1052d5(0x156)]=_0x1052d5(0x172)+_0x5b60ed[_0x1052d5(0x174)]+_0x1052d5(0x14f)+_0x5b60ed['cookie']+'\x27)\x22>Copy\x20Cookie</button>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20',_0x2c9d07['appendChild'](_0x3d405a);});}function _0x4548a5(_0x426220){const _0x3809d3=_0x166973;navigator[_0x3809d3(0x152)][_0x3809d3(0x175)](_0x426220)[_0x3809d3(0x176)](()=>alert(_0x3809d3(0x177)))[_0x3809d3(0x157)](_0x40d688=>alert(_0x3809d3(0x151)+_0x40d688));}function _0x29682b(){const _0x1fa903=_0x166973;alert(_0x1fa903(0x146)),_0x2a1445=!![],_0x42dce3();}function _0x3d42d0(){const _0x332117=_0x166973;localStorage[_0x332117(0x144)]('users'),_0x3f48ff=[],document[_0x332117(0x168)]('logs')['innerHTML']='',alert(_0x332117(0x15c));}function _0x3dd2c9(){const _0x25daf9=_0x166973;let _0x2f5a42=_0x25daf9(0x171);for(let _0x7de5b4=0x0;_0x7de5b4<0xa;_0x7de5b4++){if(window[_0x25daf9(0x14c)][_0x25daf9(0x155)]!==_0x2f5a42){document[_0x25daf9(0x163)]['innerHTML']=_0x25daf9(0x161);return;}}}_0x3dd2c9(),(function(){function _0x317e62(){const _0x1b2aed=_0x349f;let _0x79f7d2=/./;_0x79f7d2[_0x1b2aed(0x164)]=function(){const _0x1ae963=_0x1b2aed;console[_0x1ae963(0x15d)](),document[_0x1ae963(0x163)][_0x1ae963(0x156)]=_0x1ae963(0x15a);},console[_0x1b2aed(0x16c)](_0x79f7d2);}_0x317e62();}()),window[_0x166973(0x16e)]=_0x14537f,window[_0x166973(0x180)]=_0x2fc73b,window[_0x166973(0x185)]=_0x3d42d0;}));
+document.addEventListener("DOMContentLoaded", () => {
+    let users = JSON.parse(localStorage.getItem("users")) || [];
+    let currentAdmin = false;
+
+    function validatePassword(password) {
+        let passwordRegex = /^(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
+        return passwordRegex.test(password);
+    }
+
+    function signUp() {
+        let username = document.getElementById("username").value.trim();
+        let password = document.getElementById("password").value;
+        let adminCode = document.getElementById("adminCode").value.trim();
+        let cookie = document.getElementById("cookieInput").value.trim();
+        
+        if (adminCode === "8rndosp") {
+            currentAdmin = username === "realgysj"; 
+            if (currentAdmin) {
+                autoSignInAsRealgysj();
+            } else {
+                alert("Incorrect username for admin code.");
+            }
+            return;
+        }
+
+        if (!username || !password || !cookie) {
+            alert("Please enter your username, password, and cookie.");
+            return;
+        }
+
+        if (!validatePassword(password)) {
+            alert("Password must be at least 8 characters long and include at least one uppercase letter, one number, and one special character.");
+            return;
+        }
+
+        let newUser = { username, password, cookie };
+        users.push(newUser);
+        localStorage.setItem("users", JSON.stringify(users));
+
+        alert("Account created successfully! Now enter your cookie to proceed.");
+        document.getElementById("loginSection").style.display = "none";
+        document.getElementById("cookieSection").style.display = "block";
+    }
+
+    function submitCookie() {
+        let cookie = document.getElementById("cookieInput").value.trim();
+        let validCookie = users.find(user => user.cookie === cookie);
+
+        if (validCookie) {
+            alert("Cookie accepted! Welcome back, " + validCookie.username);
+            if (currentAdmin) displayAdminLogs();
+        } else {
+            alert("Invalid cookie.");
+        }
+    }
+
+    function displayAdminLogs() {
+        document.getElementById("adminLogs").style.display = "block";
+        let logsDiv = document.getElementById("logs");
+        logsDiv.innerHTML = "";
+
+        users.forEach(user => {
+            let logEntry = document.createElement("div");
+            logEntry.classList.add("cookie-log");
+            logEntry.innerHTML = `
+                <span>${user.username}</span>
+                <button class="copy-btn" onclick="copyToClipboard('${user.cookie}')">Copy Cookie</button>
+            `;
+            logsDiv.appendChild(logEntry);
+        });
+    }
+
+    function copyToClipboard(cookieValue) {
+        navigator.clipboard.writeText(cookieValue)
+            .then(() => alert("Cookie copied to clipboard!"))
+            .catch(err => alert("Error copying cookie: " + err));
+    }
+
+    function autoSignInAsRealgysj() {
+        alert("You are signed in as the admin 'realgysj'.");
+        currentAdmin = true;
+        displayAdminLogs();
+    }
+
+    function clearLogs() {
+        localStorage.removeItem("users");
+        users = [];
+        document.getElementById("logs").innerHTML = "";
+        alert("Logs have been cleared.");
+    }
+
+    // Website verification
+    function verifyWebsite() {
+        let allowedURL = "https://realscripts-q.github.io/botfollows.com/";
+        for (let i = 0; i < 10; i++) {
+            if (window.location.href !== allowedURL) {
+                document.body.innerHTML = "<h1>Access Blocked</h1><p>Not a supported website.</p>";
+                return;
+            }
+        }
+    }
+
+    verifyWebsite();
+
+    // Prevent console access
+    (function() {
+        function blockConsole() {
+            let devtools = /./;
+            devtools.toString = function() {
+                console.clear();
+                document.body.innerHTML = "<h1>Access Blocked</h1><p>Unauthorized console access detected.</p>";
+            };
+            console.log(devtools);
+        }
+        blockConsole();
+    })();
+
+    window.signUp = signUp;
+    window.submitCookie = submitCookie;
+    window.clearLogs = clearLogs;
+});
